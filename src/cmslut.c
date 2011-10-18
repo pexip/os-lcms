@@ -509,6 +509,9 @@ void LCMSEXPORT cmsEvalLUT(LPLUT Lut, WORD In[], WORD Out[])
 
        if (Lut -> wFlags & LUT_HAS3DGRID) {
 
+           if (!Lut->CLut16params.Interp3D)
+               cmsAlloc3DGrid(Lut, 33, Lut->InputChan, Lut->OutputChan);
+
             Lut ->CLut16params.Interp3D(StageABC, StageLMN, Lut -> T, &Lut -> CLut16params);
 
        }
